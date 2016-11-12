@@ -1,0 +1,45 @@
+<h1>Passenger Search!</h1>
+
+<form #f="ngForm" novalidate>
+    <div class="form-group">
+        <label>Name</label>
+        <input class="form-control"
+               [(ngModel)]="name"
+               name="name"
+               required
+               minlength="3"
+               nameValidator>
+        <div *ngIf="f?.controls?.name?.hasError('required')">
+            Dieses Feld ist ein Pflichtfeld.
+        </div>
+
+        <div *ngIf="f?.controls?.name?.hasError('minlength')">
+            Bitte erfassen Sie min. 3 Zeichen.
+        </div>
+        <div *ngIf="f?.controls?.name?.hasError('charsOnly')">
+            Bitte nur Buchstaben erfassen.
+        </div>
+    </div>
+    <div class="form-group">
+        <button
+                class="btn btn-primary"
+                name="btnSearch"
+                (click)="search()">Search
+        </button>
+    </div>
+
+</form>
+
+<div class="row">
+    <div *ngFor="let p of passagiers" class="col-sm-6 col-md-4 col-lg-3 ">
+        <passagier-card [item]="p"
+                        [(selectedItem)]="selectedPassagier">
+        </passagier-card>
+    </div>
+</div>
+<div class="row" style="margin-top:40px">
+<pre>Markierter Passagier
+----------------------
+{{selectedPassagier | json}}
+</pre>
+</div>
