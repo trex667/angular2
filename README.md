@@ -4,4 +4,4 @@ passagier-demo
 --------------
 
 example builded during the training.
-* first commit is all from the first day
+
