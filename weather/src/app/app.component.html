@@ -1,3 +1,35 @@
-<h1>
-  {{title}}
-</h1>
+<h1>Weather</h1>
+
+<form>
+    <div>
+        <label>City</label>
+        <input [(ngModel)]="city" name="city">
+    </div>
+    <div>
+        <button name="btnSearch" [disabled]="!city" (click)="search()">Search</button>
+    </div>
+
+</form>
+<!--
+[ngClass]="{ 'active': f == selectedFlight }"
+-->
+<table>
+
+    <tr *ngFor="let f of weatherList">
+        <!--<td>{{f.id}}</td>
+        <td>{{f.from}}</td>
+        <td>{{f.to}}</td>
+        <td>{{f.date | date:'dd.MM.yyyy HH:mm'}}</td>
+        <td><a class="btn btn-default" (click)="select(f)">Auswählen</a></td>
+        <td><a class="btn btn-default"
+            
+               [routerLink]="['/flight-edit', f.id]">Editieren</a></td>
+               -->
+    </tr>
+</table>
+
+<pre>forecast
+----------------------
+{{forecastList | json}}
+</pre>
+

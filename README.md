@@ -5,3 +5,6 @@ passagier-demo
 
 example builded during the training.
 
+npm start
+--> http://localhost:8091
+
