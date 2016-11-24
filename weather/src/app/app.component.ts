@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {Http, URLSearchParams, Headers } from '@angular/http';
 import {Forecast} from './entities/Forecast';
+import {WeatherService} from './weather.service';
+import './rxjs-operators';
 
 
 @Component({
@@ -11,26 +13,20 @@ import {Forecast} from './entities/Forecast';
 export class AppComponent {
 
     public city: string = "Trier";
-    public forecastList: Array<Forecast> = [];
+    public forecastList: Array<any> = [];
 
-    constructor(private http: Http) {
+    errorMessage: string;
+
+    constructor(private weatherService: WeatherService) {
     }
 
 
     public search(): void {
-        let url = "http://api.openweathermap.org/data/2.5/forecast?q=Trier,de&mode=json&units=metric&lang=de&APPID=a59c9a186c9eddca27a2f6f157d45275";
+     this.weatherService.getForecast()
+                     .subscribe(
+                       data => this.forecastList = data,
+                       error =>  this.errorMessage = <any>error);
 
-        this
-            .http
-            .get(url)
-            .subscribe(
-                (weatherList: Array<Forecast>) => {
-                    this.forecastList = weatherList;
-                },
-                (err) => {
-                    console.error(err);
-                }
-            )
 
 
 

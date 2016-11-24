@@ -1,13 +1,12 @@
 import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
-import {Forecast} from './entities';
 import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
-export class HeroService {
-  let url = "http://api.openweathermap.org/data/2.5/forecast?q=Trier,de&mode=json&units=metric&lang=de&APPID=a59c9a186c9eddca27a2f6f157d45275";
+export class WeatherService {
+  private url = "http://api.openweathermap.org/data/2.5/forecast?q=Trier,de&mode=json&units=metric&lang=de&APPID=a59c9a186c9eddca27a2f6f157d45275";
   constructor (private http: Http) {}
-  getForecast (): Observable<Forecast[]> {
+  getForecast (): Observable<any[]> {
     return this.http.get(this.url)
                     .map(this.extractData)
                     .catch(this.handleError);
